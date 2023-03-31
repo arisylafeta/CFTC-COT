@@ -62,6 +62,13 @@ def FetchData(commodity):
     results_df = pd.DataFrame.from_records(results)
     return results_df
 
+def ManipulateData(df):
+    df['date'] = df['date'].apply(lambda x: x[:-13])
+    showdata = df[['date', 'long', 'short', 'long_change', 'short_change']]
+    showdata['Net Positions'] = showdata['long'].astype(int) - showdata['short'].astype(int)
+    showdata['Long%'] = showdata['long'].astype(int) /(showdata['long'].astype(int) + showdata['short'].astype(int))
+    showdata['Short%'] = showdata['short'].astype(int) /(showdata['long'].astype(int) + showdata['short'].astype(int))
+    showdata = showdata.reset_index(drop=True)    
 
 #App Interface
 
@@ -94,11 +101,11 @@ with col2:
 if st.button("Let's get it"):
         commodityID = comTrans(commodity)
         df = FetchData(commodityID)
-        df['date'] = df['date'].apply(lambda x: x[:-13])
-        showdata = df[['date', 'long', 'short', 'long_change', 'short_change']]
-        st.dataframe(showdata)
-
+        df = ManipulateData(df)
+        
+        
+showdata = pd.DataFrame()
+st.table(showdata)
+    
 
         
-
-
