@@ -35,6 +35,8 @@ def comTrans(selection):
             id = '090741'
         case 'CHFUSD':
             id = '092741'
+        case 'DXY':
+            id = '098662'
     return id
 
 #Fetch the data from CFTC Website
@@ -94,7 +96,7 @@ st.write("")
 col1, col2 = st.columns(2)
 
 with col1:
-    commodity = st.selectbox("1. Select your commodity", ('SP500', 'NDX100', 'GOLD', 'SILVER', 'USOIL', 'EURUSD', 'GBPUSD', 'JPYUSD', 'CADUSD', 'AUDUSD' ,'NZDUSD',  'CHFUSD'))
+    commodity = st.selectbox("1. Select your commodity", ('SP500', 'NDX100', 'GOLD', 'SILVER', 'USOIL', 'EURUSD', 'GBPUSD', 'JPYUSD', 'CADUSD', 'AUDUSD' ,'NZDUSD','DXY' , 'CHFUSD'))
 with col2:
     st.write('')
     
